@@ -46,6 +46,86 @@ section{padding:100px 0}.section-head{max-width:720px;margin-bottom:45px}.sectio
 .modal{position:fixed;inset:0;background:rgba(0,0,0,.72);backdrop-filter:blur(10px);display:none;place-items:center;z-index:100;padding:20px}.modal.open{display:grid}.modal-box{width:min(560px,100%);background:#151310;border:1px solid var(--line);border-radius:25px;padding:28px;box-shadow:var(--shadow)}.modal-box h2{font:32px Georgia,serif;margin-top:0}.close{float:right;border:0;background:transparent;color:var(--muted);font-size:24px}.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.field{margin:10px 0}.field.full{grid-column:1/-1}.field label{display:block;color:#d8cebf;font-size:12px;margin-bottom:7px}.field input,.field select,.field textarea{width:100%;background:#0e0d0c;border:1px solid var(--line);border-radius:12px;padding:12px;color:var(--cream);outline:none}.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--gold)}.check{display:flex;gap:9px;align-items:flex-start;color:var(--muted);font-size:12px;line-height:1.5;margin:13px 0}.toast{position:fixed;right:20px;bottom:20px;z-index:200;background:#171513;border:1px solid var(--line);padding:14px 18px;border-radius:14px;display:none;box-shadow:var(--shadow)}.toast.show{display:block}
 @media(max-width:1000px){.grid{grid-template-columns:repeat(2,1fr)}.hero-card{display:none}.steps{grid-template-columns:repeat(2,1fr)}.profile-grid,.features{grid-template-columns:1fr 1fr}.stats{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:680px){.navlinks{display:none}.hero{min-height:600px}.hero p{font-size:15px}section{padding:70px 0}.section-head h2{font-size:38px}.grid,.features,.profile-grid,.safety,.footer-grid{grid-template-columns:1fr}.steps{grid-template-columns:1fr}.stats{grid-template-columns:1fr 1fr}.form-grid{grid-template-columns:1fr}.field.full{grid-column:auto}.package.popular{transform:none}}
+
+/* ===== VIBRANT WORLD-CLASS UI UPGRADE ===== */
+:root{
+  --violet:#8b5cf6;--pink:#ec4899;--cyan:#22d3ee;--lime:#a3e635;
+  --orange:#fb923c;--glass:rgba(255,255,255,.065);
+}
+body{
+  background:
+    radial-gradient(circle at 12% 8%,rgba(139,92,246,.22),transparent 24rem),
+    radial-gradient(circle at 88% 12%,rgba(236,72,153,.18),transparent 27rem),
+    radial-gradient(circle at 70% 70%,rgba(34,211,238,.12),transparent 30rem),
+    linear-gradient(120deg,#07070b,#100b18 42%,#080b12 72%,#0d080b);
+  background-size:160% 160%;
+  animation:bgShift 18s ease-in-out infinite alternate;
+}
+@keyframes bgShift{0%{background-position:0% 0%}100%{background-position:100% 100%}}
+body:before,body:after{
+  content:"";position:fixed;inset:auto;pointer-events:none;z-index:-1;border-radius:50%;
+  filter:blur(80px);opacity:.35;animation:orbFloat 12s ease-in-out infinite alternate;
+}
+body:before{width:260px;height:260px;left:4%;top:32%;background:var(--violet)}
+body:after{width:220px;height:220px;right:4%;bottom:10%;background:var(--cyan);animation-delay:-4s}
+@keyframes orbFloat{from{transform:translate3d(0,0,0) scale(1)}to{transform:translate3d(35px,-28px,0) scale(1.18)}}
+.nav{background:rgba(7,7,10,.66);border-bottom:1px solid rgba(255,255,255,.1);box-shadow:0 12px 50px rgba(0,0,0,.22)}
+.crest{box-shadow:0 0 25px rgba(214,179,106,.22),inset 0 0 20px rgba(139,92,246,.18)}
+.brand strong{background:linear-gradient(90deg,#fff,var(--gold2),#fff);-webkit-background-clip:text;background-clip:text;color:transparent}
+.btn{
+  position:relative;overflow:hidden;isolation:isolate;
+  background:linear-gradient(110deg,#f1d38f,#d8a84f 45%,#8b5cf6 100%);
+  transition:transform .25s ease,box-shadow .25s ease,filter .25s ease;
+}
+.btn:before{content:"";position:absolute;inset:-60%;background:linear-gradient(110deg,transparent 35%,rgba(255,255,255,.55),transparent 60%);transform:translateX(-60%) rotate(10deg);transition:transform .65s ease;z-index:-1}
+.btn:hover{transform:translateY(-3px) scale(1.015);box-shadow:0 16px 38px rgba(139,92,246,.28),0 8px 24px rgba(214,179,106,.18);filter:saturate(1.15)}
+.btn:hover:before{transform:translateX(60%) rotate(10deg)}
+.btn.secondary:hover,.btn.dark:hover{border-color:rgba(255,255,255,.28);background:linear-gradient(120deg,rgba(139,92,246,.18),rgba(236,72,153,.12));}
+.hero{min-height:730px}
+.hero:before{content:"";position:absolute;width:520px;height:520px;right:6%;top:12%;border-radius:50%;background:conic-gradient(from 90deg,rgba(139,92,246,.25),rgba(236,72,153,.2),rgba(34,211,238,.18),rgba(139,92,246,.25));filter:blur(20px);opacity:.8;animation:spinAura 20s linear infinite}
+@keyframes spinAura{to{transform:rotate(360deg)}}
+.hero h1 em{font-style:normal;background:linear-gradient(90deg,#fff,var(--gold2),#f5b4ff,#fff);-webkit-background-clip:text;background-clip:text;color:transparent;background-size:220%;animation:textGlow 8s ease-in-out infinite}
+@keyframes textGlow{0%,100%{background-position:0%}50%{background-position:100%}}
+.hero-card,.card,.dashboard{
+  background:linear-gradient(145deg,rgba(255,255,255,.085),rgba(255,255,255,.025));
+  border-color:rgba(255,255,255,.11);
+  backdrop-filter:blur(18px);
+}
+.hero-card{box-shadow:0 30px 100px rgba(0,0,0,.42),0 0 70px rgba(139,92,246,.12)}
+.avatar,.mini{box-shadow:inset 0 0 35px rgba(255,255,255,.08),0 15px 40px rgba(0,0,0,.25)}
+.card{transition:transform .3s ease,border-color .3s ease,box-shadow .3s ease}
+.card:hover{transform:translateY(-6px);border-color:rgba(214,179,106,.35);box-shadow:0 24px 70px rgba(0,0,0,.28),0 0 35px rgba(139,92,246,.08)}
+.package.popular{box-shadow:0 25px 80px rgba(139,92,246,.15),0 0 35px rgba(214,179,106,.08)}
+.ribbon{background:linear-gradient(90deg,var(--gold2),#fff0b5);box-shadow:0 8px 24px rgba(214,179,106,.22)}
+.tag{background:rgba(214,179,106,.08);box-shadow:inset 0 0 18px rgba(214,179,106,.06)}
+.icon{background:linear-gradient(145deg,rgba(139,92,246,.18),rgba(34,211,238,.06));box-shadow:0 8px 25px rgba(139,92,246,.12)}
+.progress{height:9px;box-shadow:inset 0 0 12px rgba(0,0,0,.6)}
+.progress span{background:linear-gradient(90deg,var(--gold),var(--pink),var(--violet),var(--cyan));background-size:240%;animation:progressFlow 5s linear infinite}
+@keyframes progressFlow{to{background-position:240% 0}}
+.dash-stat strong{background:linear-gradient(90deg,#fff,var(--gold2),#c7b4ff);-webkit-background-clip:text;background-clip:text;color:transparent}
+.section-head .eyebrow{background:linear-gradient(90deg,var(--gold2),#d7b8ff,var(--cyan));-webkit-background-clip:text;background-clip:text;color:transparent}
+.note{background:linear-gradient(90deg,rgba(214,179,106,.07),rgba(139,92,246,.06),rgba(34,211,238,.04));border-image:linear-gradient(var(--gold),var(--violet)) 1}
+.step{transition:transform .25s ease,background .25s ease;border-top-color:var(--violet);border-radius:14px}
+.step:hover{transform:translateY(-5px);background:rgba(139,92,246,.07)}
+.toast{background:linear-gradient(135deg,#1a1523,#101318);box-shadow:0 20px 60px rgba(0,0,0,.5),0 0 35px rgba(139,92,246,.15)}
+.modal-box{background:linear-gradient(145deg,rgba(30,25,39,.96),rgba(12,12,15,.98));backdrop-filter:blur(24px);box-shadow:0 35px 100px rgba(0,0,0,.65),0 0 60px rgba(139,92,246,.13)}
+.field input:focus,.field select:focus,.field textarea:focus{box-shadow:0 0 0 3px rgba(139,92,246,.12),0 0 30px rgba(139,92,246,.1)}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important}}
+
+
+.widget-dock{position:fixed;right:20px;top:50%;transform:translateY(-50%);z-index:70;display:flex;flex-direction:column;gap:9px;padding:9px;border:1px solid rgba(255,255,255,.1);border-radius:20px;background:rgba(12,11,16,.7);backdrop-filter:blur(18px);box-shadow:0 20px 50px rgba(0,0,0,.35)}
+.widget-dock button{width:42px;height:42px;border-radius:14px;border:1px solid rgba(255,255,255,.08);background:linear-gradient(145deg,rgba(139,92,246,.22),rgba(34,211,238,.08));color:#fff;font-size:17px;transition:.25s}
+.widget-dock button:hover{transform:scale(1.08);box-shadow:0 0 25px rgba(139,92,246,.28)}
+.floating-widget{position:fixed;right:82px;top:50%;transform:translateY(-50%) translateX(20px) scale(.97);opacity:0;pointer-events:none;width:290px;z-index:69;padding:20px;border:1px solid rgba(255,255,255,.12);border-radius:22px;background:linear-gradient(145deg,rgba(28,22,38,.97),rgba(9,12,17,.97));backdrop-filter:blur(22px);box-shadow:0 30px 90px rgba(0,0,0,.55),0 0 50px rgba(139,92,246,.12);transition:.3s}
+.floating-widget.open{opacity:1;pointer-events:auto;transform:translateY(-50%) translateX(0) scale(1)}
+.widget-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}.widget-head button{background:none;border:0;color:#aaa;font-size:22px}
+.widget-metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:7px}.widget-metrics div{padding:12px 8px;text-align:center;border-radius:14px;background:rgba(255,255,255,.045)}.widget-metrics b{display:block;color:var(--gold2);font-size:22px}.widget-metrics span{font-size:9px;color:#aaa;text-transform:uppercase;letter-spacing:.08em}
+.widget-progress{height:7px;border-radius:99px;background:#26222b;margin:16px 0;overflow:hidden}.widget-progress span{display:block;height:100%;background:linear-gradient(90deg,var(--gold),var(--pink),var(--cyan));border-radius:99px}
+.widget-copy{font-size:12px;line-height:1.7;color:#aaa}.moods{display:flex;gap:6px;flex-wrap:wrap}.moods button{border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.04);color:#ddd;padding:8px 10px;border-radius:999px;font-size:11px}.moods button:hover{border-color:var(--violet);background:rgba(139,92,246,.12)}.widget-result{margin-top:14px;color:var(--gold2);font-size:12px}
+.focus-ring{width:110px;height:110px;margin:8px auto 15px;border-radius:50%;display:grid;place-items:center;border:5px solid transparent;background:linear-gradient(#11121a,#11121a) padding-box,linear-gradient(135deg,var(--gold),var(--pink),var(--cyan)) border-box;box-shadow:0 0 35px rgba(139,92,246,.14);font-size:30px;font-weight:900}.focus-ring small{font-size:10px;color:#999;margin-top:-28px}
+.floating-widget .btn{width:100%;padding:10px 14px}
+@media(max-width:680px){.widget-dock{right:10px;bottom:15px;top:auto;transform:none;flex-direction:row}.floating-widget{right:10px;bottom:78px;top:auto;transform:translateY(15px) scale(.97)}.floating-widget.open{transform:translateY(0) scale(1)}}
+
 </style>
 </head>
 <body>
@@ -188,6 +268,43 @@ section{padding:100px 0}.section-head{max-width:720px;margin-bottom:45px}.sectio
 </section>
 </main>
 
+
+<!-- Interactive glanceable widget dock -->
+<div class="widget-dock" aria-label="Quick widgets">
+  <button onclick="toggleWidget('quickWidget')" title="Quick glance">✦</button>
+  <button onclick="toggleWidget('moodWidget')" title="Journey mood">◌</button>
+  <button onclick="toggleWidget('focusWidget')" title="Focus">⌁</button>
+</div>
+
+<div class="floating-widget" id="quickWidget">
+  <div class="widget-head"><strong>Quick Glance</strong><button onclick="toggleWidget('quickWidget')">×</button></div>
+  <div class="widget-metrics">
+    <div><b>92%</b><span>Profile</span></div>
+    <div><b>17</b><span>Contacts</span></div>
+    <div><b>12</b><span>Connections</span></div>
+  </div>
+  <div class="widget-progress"><span style="width:92%"></span></div>
+  <button class="btn" onclick="location.hash='dashboard';toggleWidget('quickWidget')">Open Dashboard</button>
+</div>
+
+<div class="floating-widget" id="moodWidget">
+  <div class="widget-head"><strong>Journey Mood</strong><button onclick="toggleWidget('moodWidget')">×</button></div>
+  <p class="widget-copy">How would you like your discovery experience to feel?</p>
+  <div class="moods">
+    <button onclick="setMood('Calm & Private')">Calm</button>
+    <button onclick="setMood('Warm & Hopeful')">Hopeful</button>
+    <button onclick="setMood('Confident & Intentional')">Intentional</button>
+  </div>
+  <div id="moodResult" class="widget-result">Choose a mood.</div>
+</div>
+
+<div class="floating-widget" id="focusWidget">
+  <div class="widget-head"><strong>Today’s Focus</strong><button onclick="toggleWidget('focusWidget')">×</button></div>
+  <div class="focus-ring"><span id="focusNumber">60</span><small>sec</small></div>
+  <p class="widget-copy">Take one quiet minute to review your profile and connection preferences.</p>
+  <button class="btn" onclick="startFocus()">Start 60s Focus</button>
+</div>
+
 <footer class="footer">
  <div class="container footer-grid">
   <div><div class="brand"><span class="crest">D</span><span><strong>DIVYAMANGALYAM</strong><small>Where Hearts Meet, Families Unite.</small></span></div><p>Not just a match. A meaningful beginning.</p></div>
@@ -225,6 +342,19 @@ function toast(msg){const t=$('toast');t.textContent=msg;t.classList.add('show')
 function register(){const name=$('name').value.trim(),email=$('email').value.trim(),age=Number($('age').value);if(!name||!email||!age){toast('Please complete the required fields.');return}if(age<18){toast('Registration is restricted to eligible adults under the platform policy.');return}closeModal('register');toast('Welcome to DivyaMangalyam. Your free profile flow has started.')}
 function choosePackage(n,price,contacts){$('packageTitle').textContent=`Package ${n} — RM ${price.toLocaleString()} / Year`;$('packageText').textContent=`This package provides access to up to ${contacts} selected contact details for 12 months, subject to member privacy, consent, platform rules and applicable law.`;openModal('packageModal')}
 function unlockContact(){let used=Number($('used').textContent);if(used>=25){toast('No contact allowance remains.');return}used++;$('used').textContent=used;$('remaining').textContent=25-used;toast('Contact unlocked in this demo. 1 allowance has been counted.')}
+
+function toggleWidget(id){
+  document.querySelectorAll('.floating-widget').forEach(w=>{if(w.id!==id)w.classList.remove('open')});
+  $(id).classList.toggle('open');
+}
+function setMood(m){$('moodResult').textContent='Selected: '+m+' — your dashboard preferences can reflect this tone.';toast('Journey mood updated.')}
+let focusTimer=null;
+function startFocus(){
+  if(focusTimer)return;
+  let n=60;$('focusNumber').textContent=n;
+  focusTimer=setInterval(()=>{n--;$('focusNumber').textContent=n;if(n<=0){clearInterval(focusTimer);focusTimer=null;toast('Focus complete. Your journey starts with intention.');}},1000);
+}
+
 </script>
 </body>
 </html>
