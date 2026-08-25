@@ -329,7 +329,7 @@ body:after{width:220px;height:220px;right:4%;bottom:10%;background:var(--cyan);a
 </div>
 
 <div class="modal" id="packageModal">
- <div class="modal-box"><button class="close" onclick="closeModal('packageModal')">×</button><div class="eyebrow">Secure Payment</div><h2 id="packageTitle">Package</h2><p id="packageText" style="color:var(--muted)"></p><div class="card"><strong>Payment information</strong><p style="color:var(--muted);font-size:12px">Demo checkout interface. Connect a Malaysia-appropriate authorized payment provider in production. Never store raw card numbers, CVV, banking passwords or OTPs.</p></div><label class="check"><input type="checkbox"> I have reviewed the contact allowance, validity, cancellation, refund and unused-contact policy before payment.</label><button class="btn" style="width:100%" onclick="toast('Demo payment initiated. Connect your authorized payment gateway for production.');closeModal('packageModal')">Continue to Secure Payment</button></div>
+ <div class="modal-box"><button class="close" onclick="closeModal('packageModal')">×</button><div class="eyebrow">Secure Payment</div><h2 id="packageTitle">Package</h2><p id="packageText" style="color:var(--muted)"></p><div class="card"><strong>Payment information</strong><p style="color:var(--muted);font-size:12px">Secure checkout is handled by Stripe. Your server keeps the Stripe secret key private; card details are entered on Stripe-hosted Checkout. Never store raw card numbers, CVV, banking passwords or OTPs.</p></div><label class="check"><input type="checkbox"> I have reviewed the contact allowance, validity, cancellation, refund and unused-contact policy before payment.</label><button class="btn" id="stripeContinue" style="width:100%" onclick="toast('Stripe Checkout is opened by the selected package button.')">Continue to Stripe Checkout</button></div>
 </div>
 <div class="toast" id="toast"></div>
 
@@ -340,7 +340,27 @@ function closeModal(id){$(id).classList.remove('open')}
 document.querySelectorAll('.modal').forEach(m=>m.addEventListener('click',e=>{if(e.target===m)m.classList.remove('open')}));
 function toast(msg){const t=$('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),3200)}
 function register(){const name=$('name').value.trim(),email=$('email').value.trim(),age=Number($('age').value);if(!name||!email||!age){toast('Please complete the required fields.');return}if(age<18){toast('Registration is restricted to eligible adults under the platform policy.');return}closeModal('register');toast('Welcome to DivyaMangalyam. Your free profile flow has started.')}
-function choosePackage(n,price,contacts){$('packageTitle').textContent=`Package ${n} — RM ${price.toLocaleString()} / Year`;$('packageText').textContent=`This package provides access to up to ${contacts} selected contact details for 12 months, subject to member privacy, consent, platform rules and applicable law.`;openModal('packageModal')}
+async function choosePackage(n,price,contacts){
+  $('packageTitle').textContent=`Package ${n} — RM ${price.toLocaleString()} / Year`;
+  $('packageText').textContent=`Preparing secure Stripe Checkout for ${contacts} contacts and 12 months of access…`;
+  openModal('packageModal');
+  const payBtn=document.querySelector('#packageModal .btn');
+  payBtn.disabled=true; payBtn.textContent='Connecting to Stripe…';
+  try{
+    const response=await fetch('/api/create-checkout-session',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({packageId:n})
+    });
+    const data=await response.json();
+    if(!response.ok || !data.url) throw new Error(data.error||'Unable to start checkout.');
+    window.location.href=data.url;
+  }catch(err){
+    payBtn.disabled=false; payBtn.textContent='Try Stripe Checkout Again';
+    $('packageText').textContent=err.message;
+    toast(err.message);
+  }
+}
 function unlockContact(){let used=Number($('used').textContent);if(used>=25){toast('No contact allowance remains.');return}used++;$('used').textContent=used;$('remaining').textContent=25-used;toast('Contact unlocked in this demo. 1 allowance has been counted.')}
 
 function toggleWidget(id){
